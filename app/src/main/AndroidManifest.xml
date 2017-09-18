@@ -26,11 +26,13 @@
 
         <activity
             android:name=".activity.InfoActivity"
+            android:label="@string/label_info"
             android:parentActivityName=".activity.LoginActivity"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name=".activity.RepoActivity"
+            android:label="@string/label_repo"
             android:parentActivityName=".activity.InfoActivity"
             android:screenOrientation="portrait"/>
 

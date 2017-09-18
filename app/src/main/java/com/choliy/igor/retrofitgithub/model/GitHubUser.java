@@ -1,8 +1,11 @@
 package com.choliy.igor.retrofitgithub.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class GitHubUser {
+public class GitHubUser implements Parcelable {
 
     @SerializedName("login")
     private String mUsername;
@@ -24,9 +27,6 @@ public class GitHubUser {
 
     @SerializedName("created_at")
     private String mCreated;
-
-    @SerializedName("html_url")
-    private String mWebUrl;
 
     @SerializedName("avatar_url")
     private String mAvatarUrl;
@@ -51,7 +51,6 @@ public class GitHubUser {
             String email,
             String about,
             String created,
-            String webUrl,
             String avatarUrl,
             int repos,
             int gists,
@@ -64,13 +63,39 @@ public class GitHubUser {
         setEmail(email);
         setAbout(about);
         setCreated(created);
-        setWebUrl(webUrl);
         setAvatarUrl(avatarUrl);
         setRepos(repos);
         setGists(gists);
         setFollowers(followers);
         setFollowing(following);
     }
+
+    protected GitHubUser(Parcel in) {
+        mUsername = in.readString();
+        mFullName = in.readString();
+        mCompany = in.readString();
+        mLocation = in.readString();
+        mEmail = in.readString();
+        mAbout = in.readString();
+        mCreated = in.readString();
+        mAvatarUrl = in.readString();
+        mRepos = in.readInt();
+        mGists = in.readInt();
+        mFollowers = in.readInt();
+        mFollowing = in.readInt();
+    }
+
+    public static final Creator<GitHubUser> CREATOR = new Creator<GitHubUser>() {
+        @Override
+        public GitHubUser createFromParcel(Parcel in) {
+            return new GitHubUser(in);
+        }
+
+        @Override
+        public GitHubUser[] newArray(int size) {
+            return new GitHubUser[size];
+        }
+    };
 
     public String getUsername() {
         return mUsername;
@@ -128,14 +153,6 @@ public class GitHubUser {
         mCreated = created;
     }
 
-    public String getWebUrl() {
-        return mWebUrl;
-    }
-
-    private void setWebUrl(String webUrl) {
-        mWebUrl = webUrl;
-    }
-
     public String getAvatarUrl() {
         return mAvatarUrl;
     }
@@ -174,5 +191,26 @@ public class GitHubUser {
 
     private void setFollowing(int following) {
         mFollowing = following;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mUsername);
+        parcel.writeString(mFullName);
+        parcel.writeString(mCompany);
+        parcel.writeString(mLocation);
+        parcel.writeString(mEmail);
+        parcel.writeString(mAbout);
+        parcel.writeString(mCreated);
+        parcel.writeString(mAvatarUrl);
+        parcel.writeInt(mRepos);
+        parcel.writeInt(mGists);
+        parcel.writeInt(mFollowers);
+        parcel.writeInt(mFollowing);
     }
 }

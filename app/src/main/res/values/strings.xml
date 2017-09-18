@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Retrofit for Github</string>
-    <string name="text_enter_username">Please enter GitHub username:</string>
+    <string name="label_info">User Info</string>
+    <string name="label_repo">User Repositories</string>
+    <string name="text_enter_username">Please enter GitHub username</string>
     <string name="hint_username">username</string>
     <string name="btn_login">login</string>
+    <string name="text_no_info">no info</string>
+    <string name="text_no_user">No such GitHub user found</string>
 
     <!-- Categories -->
     <string name="cat_username">Username:</string>
