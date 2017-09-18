@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16">
+
+    <ImageView
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/padding_32"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_github"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_8"
+        android:text="@string/text_enter_username"
+        android:textSize="@dimen/text_size_small"/>
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_16"
+        android:hint="@string/hint_username"
+        android:inputType="text"
+        tools:ignore="LabelFor"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_login_btn"
+        android:elevation="@dimen/btn_dimen"
+        android:text="@string/btn_login"
+        android:textColor="@android:color/white"
+        tools:targetApi="lollipop"/>
+
+</LinearLayout>

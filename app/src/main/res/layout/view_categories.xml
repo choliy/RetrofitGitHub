@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/padding_8"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_username"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_full_name"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_company"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_location"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_email"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_about"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_repos"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_gists"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_followers"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_following"/>
+
+    <TextView
+        style="@style/CategoryText"
+        android:text="@string/cat_created"/>
+
+</LinearLayout>

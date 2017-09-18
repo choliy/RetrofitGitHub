@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_username"
+        style="@style/InfoText"
+        tools:text="Choliy"/>
+
+    <TextView
+        android:id="@+id/tv_full_name"
+        style="@style/InfoText"
+        tools:text="Igor Choliy"/>
+
+    <TextView
+        android:id="@+id/tv_company"
+        style="@style/InfoText"
+        tools:text="Android"/>
+
+    <TextView
+        android:id="@+id/tv_location"
+        style="@style/InfoText"
+        tools:text="Ukraine"/>
+
+    <TextView
+        android:id="@+id/tv_email"
+        style="@style/InfoText"
+        tools:text="choliy.igor@gmail.com"/>
+
+    <TextView
+        android:id="@+id/tv_about"
+        style="@style/InfoText"
+        tools:text="Android Developer"/>
+
+    <TextView
+        android:id="@+id/tv_repos"
+        style="@style/InfoText"
+        tools:text="10"/>
+
+    <TextView
+        android:id="@+id/tv_gists"
+        style="@style/InfoText"
+        tools:text="2"/>
+
+    <TextView
+        android:id="@+id/tv_followers"
+        style="@style/InfoText"
+        tools:text="0"/>
+
+    <TextView
+        android:id="@+id/tv_following"
+        style="@style/InfoText"
+        tools:text="5"/>
+
+    <TextView
+        android:id="@+id/tv_created"
+        style="@style/InfoText"
+        tools:text="16.10.2015"/>
+
+</LinearLayout>

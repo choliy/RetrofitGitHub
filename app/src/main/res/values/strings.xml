@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Retrofit for Github</string>
+    <string name="text_enter_username">Please enter GitHub username:</string>
+    <string name="hint_username">username</string>
+    <string name="btn_login">login</string>
+
+    <!-- Categories -->
+    <string name="cat_username">Username:</string>
+    <string name="cat_full_name">Full name:</string>
+    <string name="cat_company">Company:</string>
+    <string name="cat_location">Location:</string>
+    <string name="cat_email">Email:</string>
+    <string name="cat_about">About:</string>
+    <string name="cat_repos">Repositories:</string>
+    <string name="cat_gists">Gists:</string>
+    <string name="cat_followers">Followers:</string>
+    <string name="cat_following">Following:</string>
+    <string name="cat_created">Created:</string>
+
+</resources>
