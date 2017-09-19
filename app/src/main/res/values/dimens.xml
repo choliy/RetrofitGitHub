@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="circle_border">2dp</dimen>
     <dimen name="btn_dimen">4dp</dimen>
     <dimen name="padding_8">8dp</dimen>
     <dimen name="padding_16">16dp</dimen>
@@ -8,6 +9,7 @@
     <dimen name="image_size">128dp</dimen>
     <dimen name="max_category_width">164dp</dimen>
 
+    <!-- Text sizes -->
     <dimen name="text_size_small">16sp</dimen>
     <dimen name="text_size_normal">18sp</dimen>
     <dimen name="text_size_big">20sp</dimen>

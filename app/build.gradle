@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 repositories {
     maven { url 'https://maven.google.com' }
     maven { url "https://clojars.org/repo/" }
+    maven { url "https://jitpack.io" }
 }
 
 android {
@@ -20,7 +21,6 @@ android {
 ext {
     retrofitVer = '2.3.0'
     butterKnifeVer = '8.8.1'
-    icepickVer = '3.2.0'
     glideVer = '4.1.1'
 }
 
@@ -37,11 +37,13 @@ dependencies {
     compile "com.jakewharton:butterknife:$butterKnifeVer"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVer"
 
-    /** Icepick **/
-    compile "frankiesardo:icepick:$icepickVer"
-    provided "frankiesardo:icepick-processor:$icepickVer"
-
     /** Glide **/
     compile "com.github.bumptech.glide:glide:$glideVer"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVer"
+
+    /** CircleImageView **/
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    /** Toasty **/
+    compile 'com.github.GrenderG:Toasty:1.2.5'
 }

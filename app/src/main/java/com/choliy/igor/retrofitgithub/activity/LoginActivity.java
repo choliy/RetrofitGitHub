@@ -4,12 +4,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.choliy.igor.retrofitgithub.R;
 import com.choliy.igor.retrofitgithub.model.GitHubUser;
 import com.choliy.igor.retrofitgithub.rest.ApiClient;
 import com.choliy.igor.retrofitgithub.rest.ApiService;
+import com.choliy.igor.retrofitgithub.util.Utils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,6 +29,7 @@ public class LoginActivity extends AbstractActivity {
 
     @Override
     public void setupUi() {
+        // leave empty for current activity
     }
 
     @OnClick(R.id.btn_login)
@@ -37,7 +38,7 @@ public class LoginActivity extends AbstractActivity {
             mProgress.setVisibility(View.VISIBLE);
             loadData();
         } else {
-            showToast(getString(R.string.text_enter_username));
+            Utils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
         }
     }
 
@@ -48,18 +49,20 @@ public class LoginActivity extends AbstractActivity {
             @Override
             public void onResponse(Call<GitHubUser> call, Response<GitHubUser> response) {
                 mProgress.setVisibility(View.INVISIBLE);
-                startActivity(InfoActivity.newInstance(LoginActivity.this, response.body()));
+                if (response.isSuccessful()) {
+                    startActivity(InfoActivity.newInstance(LoginActivity.this, response.body()));
+                } else {
+                    Utils.checkErrorCode(LoginActivity.this, response.code());
+                    // for getting error string:
+                    // response.errorBody().string()
+                }
             }
 
             @Override
             public void onFailure(Call<GitHubUser> call, Throwable t) {
                 mProgress.setVisibility(View.INVISIBLE);
-                showToast(getString(R.string.text_no_user));
+                Utils.showInfoToast(LoginActivity.this, getString(R.string.text_check_internet));
             }
         });
-    }
-
-    private void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 }

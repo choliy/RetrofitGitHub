@@ -6,7 +6,7 @@
     <string name="hint_username">username</string>
     <string name="btn_login">login</string>
     <string name="text_no_info">no info</string>
-    <string name="text_no_user">No such GitHub user found</string>
+    <string name="text_check_internet">Check internet connection</string>
 
     <!-- Categories -->
     <string name="cat_username">Username:</string>
@@ -21,4 +21,10 @@
     <string name="cat_following">Following:</string>
     <string name="cat_created">Created:</string>
 
+    <!-- Error Codes -->
+    <string name="error_403">Access forbidden</string>
+    <string name="error_404">User not found</string>
+    <string name="error_500">Internal server error</string>
+    <string name="error_503">Service unavailable</string>
+    <string name="error_504">Gateway timeout</string>
 </resources>

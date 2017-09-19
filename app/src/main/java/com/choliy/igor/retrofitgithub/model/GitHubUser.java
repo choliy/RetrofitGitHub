@@ -43,34 +43,7 @@ public class GitHubUser implements Parcelable {
     @SerializedName("following")
     private int mFollowing;
 
-    public GitHubUser(
-            String username,
-            String fullName,
-            String company,
-            String location,
-            String email,
-            String about,
-            String created,
-            String avatarUrl,
-            int repos,
-            int gists,
-            int followers,
-            int following) {
-        setUsername(username);
-        setFullName(fullName);
-        setCompany(company);
-        setLocation(location);
-        setEmail(email);
-        setAbout(about);
-        setCreated(created);
-        setAvatarUrl(avatarUrl);
-        setRepos(repos);
-        setGists(gists);
-        setFollowers(followers);
-        setFollowing(following);
-    }
-
-    protected GitHubUser(Parcel in) {
+    private GitHubUser(Parcel in) {
         mUsername = in.readString();
         mFullName = in.readString();
         mCompany = in.readString();
@@ -97,107 +70,6 @@ public class GitHubUser implements Parcelable {
         }
     };
 
-    public String getUsername() {
-        return mUsername;
-    }
-
-    private void setUsername(String username) {
-        mUsername = username;
-    }
-
-    public String getFullName() {
-        return mFullName;
-    }
-
-    private void setFullName(String fullName) {
-        mFullName = fullName;
-    }
-
-    public String getCompany() {
-        return mCompany;
-    }
-
-    private void setCompany(String company) {
-        mCompany = company;
-    }
-
-    public String getLocation() {
-        return mLocation;
-    }
-
-    private void setLocation(String location) {
-        mLocation = location;
-    }
-
-    public String getEmail() {
-        return mEmail;
-    }
-
-    private void setEmail(String email) {
-        mEmail = email;
-    }
-
-    public String getAbout() {
-        return mAbout;
-    }
-
-    private void setAbout(String about) {
-        mAbout = about;
-    }
-
-    public String getCreated() {
-        return mCreated;
-    }
-
-    private void setCreated(String created) {
-        mCreated = created;
-    }
-
-    public String getAvatarUrl() {
-        return mAvatarUrl;
-    }
-
-    private void setAvatarUrl(String avatarUrl) {
-        mAvatarUrl = avatarUrl;
-    }
-
-    public int getRepos() {
-        return mRepos;
-    }
-
-    private void setRepos(int repos) {
-        mRepos = repos;
-    }
-
-    public int getGists() {
-        return mGists;
-    }
-
-    private void setGists(int gists) {
-        mGists = gists;
-    }
-
-    public int getFollowers() {
-        return mFollowers;
-    }
-
-    private void setFollowers(int followers) {
-        mFollowers = followers;
-    }
-
-    public int getFollowing() {
-        return mFollowing;
-    }
-
-    private void setFollowing(int following) {
-        mFollowing = following;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(mUsername);
@@ -212,5 +84,58 @@ public class GitHubUser implements Parcelable {
         parcel.writeInt(mGists);
         parcel.writeInt(mFollowers);
         parcel.writeInt(mFollowing);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public String getUsername() {
+        return mUsername;
+    }
+
+    public String getFullName() {
+        return mFullName;
+    }
+
+    public String getCompany() {
+        return mCompany;
+    }
+
+    public String getLocation() {
+        return mLocation;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public String getAbout() {
+        return mAbout;
+    }
+
+    public String getCreated() {
+        return mCreated;
+    }
+
+    public String getAvatarUrl() {
+        return mAvatarUrl;
+    }
+
+    public int getRepos() {
+        return mRepos;
+    }
+
+    public int getGists() {
+        return mGists;
+    }
+
+    public int getFollowers() {
+        return mFollowers;
+    }
+
+    public int getFollowing() {
+        return mFollowing;
     }
 }
