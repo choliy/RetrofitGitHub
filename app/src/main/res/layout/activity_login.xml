@@ -4,53 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_16">
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/padding_32">
+        android:indeterminate="true"
+        android:visibility="invisible"/>
 
-        <ImageView
-            android:layout_width="@dimen/image_size"
-            android:layout_height="@dimen/image_size"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_github"/>
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="invisible"/>
-
-    </FrameLayout>
+    <ImageView
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/padding_32"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_github"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_8"
+        android:layout_marginEnd="@dimen/padding_16"
+        android:layout_marginStart="@dimen/padding_16"
         android:text="@string/text_enter_username"
+        android:textColor="@color/colorGrey"
         android:textSize="@dimen/text_size_small"/>
 
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_16"
+        android:layout_marginEnd="@dimen/padding_16"
+        android:layout_marginStart="@dimen/padding_16"
+        android:background="@drawable/shape_edit_text"
         android:hint="@string/hint_username"
         android:inputType="text"
+        android:padding="@dimen/padding_12"
+        android:textColorHint="@color/colorGrey"
         tools:ignore="LabelFor"/>
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_16"
         android:background="@drawable/selector_login_btn"
-        android:elevation="@dimen/btn_dimen"
+        android:elevation="@dimen/corner_dimen"
         android:text="@string/btn_login"
         android:textColor="@android:color/white"
         tools:targetApi="lollipop"/>

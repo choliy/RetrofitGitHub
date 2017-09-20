@@ -30,15 +30,21 @@ public final class Utils {
     private static final String INFO_DATE_FORMAT_UK = DATE_FORMAT + " (" + TIME_FORMAT_UK + ")";
     private static final String INFO_DATE_FORMAT_US = DATE_FORMAT + " (" + TIME_FORMAT_US + ")";
 
+    private static Toast sToast;
+
     private Utils() {
     }
 
     private static void showErrorToast(Context context, String text) {
-        Toasty.error(context, text, Toast.LENGTH_SHORT, Boolean.TRUE).show();
+        if (sToast != null) sToast.cancel();
+        sToast = Toasty.error(context, text, Toast.LENGTH_SHORT, Boolean.TRUE);
+        sToast.show();
     }
 
     public static void showInfoToast(Context context, String text) {
-        Toasty.info(context, text, Toast.LENGTH_SHORT, Boolean.TRUE).show();
+        if (sToast != null) sToast.cancel();
+        sToast = Toasty.info(context, text, Toast.LENGTH_SHORT, Boolean.TRUE);
+        sToast.show();
     }
 
     public static void checkErrorCode(Context context, int errorCode) {
