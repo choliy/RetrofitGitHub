@@ -8,57 +8,57 @@
 
     <TextView
         android:id="@+id/tv_username"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="Choliy"/>
 
     <TextView
         android:id="@+id/tv_full_name"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="Igor Choliy"/>
 
     <TextView
         android:id="@+id/tv_company"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="Android"/>
 
     <TextView
         android:id="@+id/tv_location"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="Ukraine"/>
 
     <TextView
         android:id="@+id/tv_email"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="choliy.igor@gmail.com"/>
 
     <TextView
         android:id="@+id/tv_about"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="Android Developer"/>
 
     <TextView
         android:id="@+id/tv_repos"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="10"/>
 
     <TextView
         android:id="@+id/tv_gists"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="2"/>
 
     <TextView
         android:id="@+id/tv_followers"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="0"/>
 
     <TextView
         android:id="@+id/tv_following"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="5"/>
 
     <TextView
         android:id="@+id/tv_created"
-        style="@style/InfoText"
+        style="@style/InfoUserText"
         tools:text="16.10.2015"/>
 
 </LinearLayout>

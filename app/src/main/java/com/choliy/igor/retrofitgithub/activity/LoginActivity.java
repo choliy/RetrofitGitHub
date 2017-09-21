@@ -9,7 +9,7 @@ import com.choliy.igor.retrofitgithub.R;
 import com.choliy.igor.retrofitgithub.model.GitHubUser;
 import com.choliy.igor.retrofitgithub.rest.ApiClient;
 import com.choliy.igor.retrofitgithub.rest.ApiService;
-import com.choliy.igor.retrofitgithub.util.Utils;
+import com.choliy.igor.retrofitgithub.util.InfoUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,13 +36,13 @@ public class LoginActivity extends AbstractActivity {
     public void onClick() {
         if (!TextUtils.isEmpty(mUsername.getText().toString())) {
             mProgress.setVisibility(View.VISIBLE);
-            loadData();
+            loadUserData();
         } else {
-            Utils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
+            InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
         }
     }
 
-    private void loadData() {
+    private void loadUserData() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         Call<GitHubUser> call = apiService.getUser(mUsername.getText().toString());
         call.enqueue(new Callback<GitHubUser>() {
@@ -52,7 +52,7 @@ public class LoginActivity extends AbstractActivity {
                 if (response.isSuccessful()) {
                     startActivity(InfoActivity.newInstance(LoginActivity.this, response.body()));
                 } else {
-                    Utils.checkErrorCode(LoginActivity.this, response.code());
+                    InfoUtils.showErrorCode(LoginActivity.this, response.code());
                     // for getting error string:
                     // response.errorBody().string()
                 }
@@ -61,7 +61,7 @@ public class LoginActivity extends AbstractActivity {
             @Override
             public void onFailure(Call<GitHubUser> call, Throwable t) {
                 mProgress.setVisibility(View.INVISIBLE);
-                Utils.showInfoToast(LoginActivity.this, getString(R.string.text_check_internet));
+                InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_check_internet));
             }
         });
     }

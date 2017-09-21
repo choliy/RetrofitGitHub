@@ -36,6 +36,12 @@
             android:parentActivityName=".activity.InfoActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".activity.WebActivity"
+            android:label="@string/label_web"
+            android:parentActivityName=".activity.RepoActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

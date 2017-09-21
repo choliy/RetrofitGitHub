@@ -9,15 +9,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.choliy.igor.retrofitgithub.R;
 import com.choliy.igor.retrofitgithub.model.GitHubUser;
-import com.choliy.igor.retrofitgithub.util.Utils;
+import com.choliy.igor.retrofitgithub.util.DateUtils;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class InfoActivity extends AbstractActivity {
 
-    private static final String KEY_INFO = "key_info";
-
+    @BindView(R.id.iv_avatar) CircleImageView mAvatar;
     @BindView(R.id.tv_username) TextView mUsername;
     @BindView(R.id.tv_full_name) TextView mFullName;
     @BindView(R.id.tv_company) TextView mCompany;
@@ -29,11 +28,10 @@ public class InfoActivity extends AbstractActivity {
     @BindView(R.id.tv_followers) TextView mFollowers;
     @BindView(R.id.tv_following) TextView mFollowing;
     @BindView(R.id.tv_created) TextView mCreated;
-    @BindView(R.id.iv_avatar) CircleImageView mAvatar;
 
     public static Intent newInstance(Context context, GitHubUser user) {
         Intent intent = new Intent(context, InfoActivity.class);
-        intent.putExtra(KEY_INFO, user);
+        intent.putExtra(InfoActivity.class.getSimpleName(), user);
         return intent;
     }
 
@@ -44,11 +42,14 @@ public class InfoActivity extends AbstractActivity {
 
     @Override
     public void setupUi() {
-        GitHubUser user = getIntent().getParcelableExtra(KEY_INFO);
+        GitHubUser user = getIntent().getParcelableExtra(InfoActivity.class.getSimpleName());
         bindData(user);
     }
 
     private void bindData(GitHubUser user) {
+        // set avatar
+        loadAvatar(user.getAvatarUrl());
+
         // set username
         mUsername.setText(user.getUsername());
 
@@ -85,10 +86,7 @@ public class InfoActivity extends AbstractActivity {
         mFollowing.setText(String.valueOf(user.getFollowing()));
 
         // set created date
-        mCreated.setText(Utils.formatDate(this, user.getCreated()));
-
-        // set avatar
-        loadAvatar(user.getAvatarUrl());
+        mCreated.setText(DateUtils.formatDate(this, user.getCreated()));
     }
 
     private void loadAvatar(String avatarUrl) {

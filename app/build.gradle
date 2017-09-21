@@ -19,14 +19,18 @@ android {
 }
 
 ext {
+    supportVer = '26.1.0'
     retrofitVer = '2.3.0'
     butterKnifeVer = '8.8.1'
     glideVer = '4.1.1'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    /** Android Support Libraries **/
+    compile "com.android.support:appcompat-v7:$supportVer"
+    compile "com.android.support:recyclerview-v7:$supportVer"
 
     /** Retrofit **/
     compile 'com.google.code.gson:gson:2.7'

@@ -26,9 +26,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <include layout="@layout/view_categories"/>
+            <include layout="@layout/view_user_categories"/>
 
-            <include layout="@layout/view_info"/>
+            <include layout="@layout/view_user_info"/>
 
         </LinearLayout>
 
