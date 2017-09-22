@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class LoginActivity extends AbstractActivity {
 
     @BindView(R.id.edit_text) EditText mUsername;
-    @BindView(R.id.progress) ProgressBar mProgress;
+    @BindView(R.id.progress_login) ProgressBar mProgress;
 
     @Override
     public int layoutRes() {
@@ -50,7 +50,7 @@ public class LoginActivity extends AbstractActivity {
             public void onResponse(Call<GitHubUser> call, Response<GitHubUser> response) {
                 mProgress.setVisibility(View.INVISIBLE);
                 if (response.isSuccessful()) {
-                    startActivity(InfoActivity.newInstance(LoginActivity.this, response.body()));
+                    InfoActivity.newInstance(LoginActivity.this, response.body());
                 } else {
                     InfoUtils.showErrorCode(LoginActivity.this, response.code());
                     // for getting error string:

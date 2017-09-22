@@ -2,6 +2,7 @@ package com.choliy.igor.retrofitgithub.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 
@@ -17,5 +18,15 @@ public abstract class AbstractActivity extends AppCompatActivity {
         setContentView(layoutRes());
         ButterKnife.bind(this);
         setupUi();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return Boolean.TRUE;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

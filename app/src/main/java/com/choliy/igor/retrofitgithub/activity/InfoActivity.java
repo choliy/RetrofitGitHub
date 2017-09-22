@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,7 +15,7 @@ import com.choliy.igor.retrofitgithub.util.DateUtils;
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class InfoActivity extends AbstractActivity {
+public class InfoActivity extends AbstractActivity implements View.OnClickListener {
 
     @BindView(R.id.iv_avatar) CircleImageView mAvatar;
     @BindView(R.id.tv_username) TextView mUsername;
@@ -28,11 +29,12 @@ public class InfoActivity extends AbstractActivity {
     @BindView(R.id.tv_followers) TextView mFollowers;
     @BindView(R.id.tv_following) TextView mFollowing;
     @BindView(R.id.tv_created) TextView mCreated;
+    private GitHubUser mUser;
 
-    public static Intent newInstance(Context context, GitHubUser user) {
+    public static void newInstance(Context context, GitHubUser user) {
         Intent intent = new Intent(context, InfoActivity.class);
         intent.putExtra(InfoActivity.class.getSimpleName(), user);
-        return intent;
+        context.startActivity(intent);
     }
 
     @Override
@@ -42,8 +44,13 @@ public class InfoActivity extends AbstractActivity {
 
     @Override
     public void setupUi() {
-        GitHubUser user = getIntent().getParcelableExtra(InfoActivity.class.getSimpleName());
-        bindData(user);
+        mUser = getIntent().getParcelableExtra(InfoActivity.class.getSimpleName());
+        bindData(mUser);
+    }
+
+    @Override
+    public void onClick(View view) {
+        RepoActivity.newInstance(this, mUser.getUsername());
     }
 
     private void bindData(GitHubUser user) {
@@ -54,27 +61,46 @@ public class InfoActivity extends AbstractActivity {
         mUsername.setText(user.getUsername());
 
         // set fullName
-        if (user.getFullName() != null) mFullName.setText(user.getFullName());
-        else setNoInfoText(mFullName);
+        if (TextUtils.isEmpty(user.getFullName())) {
+            setNoInfoText(mFullName);
+        } else {
+            mFullName.setText(user.getFullName());
+        }
 
         // set company
-        if (user.getCompany() != null) mCompany.setText(user.getCompany());
-        else setNoInfoText(mCompany);
+        if (TextUtils.isEmpty(user.getCompany())) {
+            setNoInfoText(mCompany);
+        } else {
+            mCompany.setText(user.getCompany());
+        }
 
         // set location
-        if (user.getLocation() != null) mLocation.setText(user.getLocation());
-        else setNoInfoText(mLocation);
+        if (TextUtils.isEmpty(user.getLocation())) {
+            setNoInfoText(mLocation);
+        } else {
+            mLocation.setText(user.getLocation());
+        }
 
         // set email
-        if (user.getEmail() != null) mEmail.setText(user.getEmail());
-        else setNoInfoText(mEmail);
+        if (TextUtils.isEmpty(user.getEmail())) {
+            setNoInfoText(mEmail);
+        } else {
+            mEmail.setText(user.getEmail());
+        }
 
         // set about
-        if (user.getAbout() != null) mAbout.setText(user.getAbout());
-        else setNoInfoText(mAbout);
+        if (TextUtils.isEmpty(user.getAbout())) {
+            setNoInfoText(mAbout);
+        } else {
+            mAbout.setText(user.getAbout());
+        }
 
         // set repos
         mRepos.setText(String.valueOf(user.getRepos()));
+        if (user.getRepos() > 0) {
+            mRepos.setOnClickListener(this);
+            mRepos.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        }
 
         // set gists
         mGists.setText(String.valueOf(user.getGists()));

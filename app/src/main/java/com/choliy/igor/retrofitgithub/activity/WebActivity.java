@@ -7,10 +7,10 @@ import com.choliy.igor.retrofitgithub.R;
 
 public class WebActivity extends AbstractActivity {
 
-    public static Intent newInstance(Context context, String url) {
+    public static void newInstance(Context context, String url) {
         Intent intent = new Intent(context, WebActivity.class);
         intent.putExtra(WebActivity.class.getSimpleName(), url);
-        return intent;
+        context.startActivity(intent);
     }
 
     @Override

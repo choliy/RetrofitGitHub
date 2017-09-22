@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <ProgressBar
-        android:id="@+id/progress"
+        android:id="@+id/progress_login"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

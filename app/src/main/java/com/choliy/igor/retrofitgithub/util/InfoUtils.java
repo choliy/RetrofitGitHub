@@ -14,7 +14,6 @@ public final class InfoUtils {
     private static final int ERROR_500 = 500;
     private static final int ERROR_503 = 503;
     private static final int ERROR_504 = 504;
-
     private static Toast sToast;
 
     private InfoUtils() {
