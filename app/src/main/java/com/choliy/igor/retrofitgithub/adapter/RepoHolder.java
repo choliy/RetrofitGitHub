@@ -15,9 +15,9 @@ import butterknife.ButterKnife;
 
 class RepoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    @BindView(R.id.tv_repo_name) private TextView mName;
-    @BindView(R.id.tv_repo_description) private TextView mDescription;
-    @BindView(R.id.tv_repo_language) private TextView mLanguage;
+    @BindView(R.id.tv_repo_name) TextView mName;
+    @BindView(R.id.tv_repo_description) TextView mDescription;
+    @BindView(R.id.tv_repo_language) TextView mLanguage;
     private String mRepoUrl;
 
     RepoHolder(View itemView) {
@@ -28,7 +28,7 @@ class RepoHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        WebActivity.newInstance(view.getContext(), mRepoUrl);
+        WebActivity.newInstance(view.getContext(), mName.getText().toString(), mRepoUrl);
     }
 
     void bindData(GitHubRepo repo) {

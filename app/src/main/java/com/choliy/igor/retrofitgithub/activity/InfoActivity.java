@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -13,9 +14,13 @@ import com.choliy.igor.retrofitgithub.model.GitHubUser;
 import com.choliy.igor.retrofitgithub.util.DateUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class InfoActivity extends AbstractActivity implements View.OnClickListener {
+public class InfoActivity extends AbstractActivity {
+
+    private static final String KEY_INTENT_USER = "key_intent_user";
+    private GitHubUser mUser;
 
     @BindView(R.id.iv_avatar) CircleImageView mAvatar;
     @BindView(R.id.tv_username) TextView mUsername;
@@ -24,16 +29,15 @@ public class InfoActivity extends AbstractActivity implements View.OnClickListen
     @BindView(R.id.tv_location) TextView mLocation;
     @BindView(R.id.tv_email) TextView mEmail;
     @BindView(R.id.tv_about) TextView mAbout;
-    @BindView(R.id.tv_repos) TextView mRepos;
-    @BindView(R.id.tv_gists) TextView mGists;
+    @BindView(R.id.tv_created) TextView mCreated;
     @BindView(R.id.tv_followers) TextView mFollowers;
     @BindView(R.id.tv_following) TextView mFollowing;
-    @BindView(R.id.tv_created) TextView mCreated;
-    private GitHubUser mUser;
+    @BindView(R.id.tv_gists) TextView mGists;
+    @BindView(R.id.btn_repo) Button mRepos;
 
     public static void newInstance(Context context, GitHubUser user) {
         Intent intent = new Intent(context, InfoActivity.class);
-        intent.putExtra(InfoActivity.class.getSimpleName(), user);
+        intent.putExtra(KEY_INTENT_USER, user);
         context.startActivity(intent);
     }
 
@@ -44,18 +48,20 @@ public class InfoActivity extends AbstractActivity implements View.OnClickListen
 
     @Override
     public void setupUi() {
-        mUser = getIntent().getParcelableExtra(InfoActivity.class.getSimpleName());
+        mUser = getIntent().getParcelableExtra(KEY_INTENT_USER);
         bindData(mUser);
     }
 
-    @Override
+    @OnClick(R.id.btn_repo)
     public void onClick(View view) {
         RepoActivity.newInstance(this, mUser.getUsername());
     }
 
     private void bindData(GitHubUser user) {
         // set avatar
-        loadAvatar(user.getAvatarUrl());
+        if (!TextUtils.isEmpty(user.getAvatarUrl())) {
+            Glide.with(this).load(user.getAvatarUrl()).into(mAvatar);
+        }
 
         // set username
         mUsername.setText(user.getUsername());
@@ -95,15 +101,8 @@ public class InfoActivity extends AbstractActivity implements View.OnClickListen
             mAbout.setText(user.getAbout());
         }
 
-        // set repos
-        mRepos.setText(String.valueOf(user.getRepos()));
-        if (user.getRepos() > 0) {
-            mRepos.setOnClickListener(this);
-            mRepos.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-        }
-
-        // set gists
-        mGists.setText(String.valueOf(user.getGists()));
+        // set created date
+        mCreated.setText(DateUtils.formatDate(this, user.getCreated()));
 
         // set followers
         mFollowers.setText(String.valueOf(user.getFollowers()));
@@ -111,12 +110,17 @@ public class InfoActivity extends AbstractActivity implements View.OnClickListen
         // set following
         mFollowing.setText(String.valueOf(user.getFollowing()));
 
-        // set created date
-        mCreated.setText(DateUtils.formatDate(this, user.getCreated()));
-    }
+        // set gists
+        mGists.setText(String.valueOf(user.getGists()));
 
-    private void loadAvatar(String avatarUrl) {
-        if (!TextUtils.isEmpty(avatarUrl)) Glide.with(this).load(avatarUrl).into(mAvatar);
+        // set repos
+        if (user.getRepos() > 0) {
+            mRepos.setText(getString(R.string.text_repo_count, String.valueOf(user.getRepos())));
+        } else {
+            mRepos.setClickable(Boolean.FALSE);
+            mRepos.setText(getString(R.string.text_no_repo));
+            mRepos.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_button_disable));
+        }
     }
 
     private void setNoInfoText(TextView textView) {

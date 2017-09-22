@@ -24,13 +24,15 @@ import retrofit2.Response;
 
 public class RepoActivity extends AbstractActivity {
 
+    private static final String KEY_INTENT_USERNAME = "key_intent_username";
+    private RepoAdapter mAdapter;
+
     @BindView(R.id.rv_repositories) RecyclerView mRecyclerView;
     @BindView(R.id.progress_repo) ProgressBar mProgress;
-    private RepoAdapter mAdapter;
 
     public static void newInstance(Context context, String username) {
         Intent intent = new Intent(context, RepoActivity.class);
-        intent.putExtra(RepoActivity.class.getSimpleName(), username);
+        intent.putExtra(KEY_INTENT_USERNAME, username);
         context.startActivity(intent);
     }
 
@@ -58,7 +60,7 @@ public class RepoActivity extends AbstractActivity {
 
     private void loadRepositories() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        String username = getIntent().getStringExtra(RepoActivity.class.getSimpleName());
+        String username = getIntent().getStringExtra(KEY_INTENT_USERNAME);
         Call<List<GitHubRepo>> call = apiService.getRepos(username);
         call.enqueue(new Callback<List<GitHubRepo>>() {
             @Override

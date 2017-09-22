@@ -4,7 +4,7 @@
     <!-- pressed -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/corner_dimen"/>
+            <corners android:radius="@dimen/padding_8"/>
             <solid android:color="@color/colorPrimaryDark"/>
         </shape>
     </item>
@@ -12,7 +12,7 @@
     <!-- focused -->
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/corner_dimen"/>
+            <corners android:radius="@dimen/padding_8"/>
             <solid android:color="@color/colorPrimaryDark"/>
         </shape>
     </item>
@@ -20,7 +20,7 @@
     <!-- default -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="@dimen/corner_dimen"/>
+            <corners android:radius="@dimen/padding_8"/>
             <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>

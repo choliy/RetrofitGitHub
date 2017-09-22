@@ -2,7 +2,6 @@
 <resources>
     <dimen name="stroke_height">1dp</dimen>
     <dimen name="circle_border">2dp</dimen>
-    <dimen name="corner_dimen">6dp</dimen>
     <dimen name="image_size">128dp</dimen>
     <dimen name="max_category_width">164dp</dimen>
 

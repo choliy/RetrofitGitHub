@@ -3,13 +3,15 @@
     <string name="app_name">Retrofit for Github</string>
     <string name="label_info">User Info</string>
     <string name="label_repo">User Repositories</string>
-    <string name="label_web">Repository</string>
+    <string name="label_web">Repository: %1$s</string>
 
     <!-- Info text -->
     <string name="text_enter_username">Please enter GitHub username</string>
     <string name="hint_username">username</string>
     <string name="btn_login">login</string>
     <string name="text_no_info">no info</string>
+    <string name="text_no_repo">no repositories</string>
+    <string name="text_repo_count">repositories: %1$s</string>
     <string name="text_check_internet">Check internet connection</string>
 
     <!-- Categories user -->

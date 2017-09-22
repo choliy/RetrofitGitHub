@@ -32,11 +32,7 @@
 
     <TextView
         style="@style/CategoryUserText"
-        android:text="@string/cat_repos"/>
-
-    <TextView
-        style="@style/CategoryUserText"
-        android:text="@string/cat_gists"/>
+        android:text="@string/cat_created"/>
 
     <TextView
         style="@style/CategoryUserText"
@@ -48,6 +44,6 @@
 
     <TextView
         style="@style/CategoryUserText"
-        android:text="@string/cat_created"/>
+        android:text="@string/cat_gists"/>
 
 </LinearLayout>

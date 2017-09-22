@@ -11,7 +11,6 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:indeterminate="true"
         android:visibility="invisible"/>
 
@@ -48,13 +47,8 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
         android:layout_margin="@dimen/padding_16"
-        android:background="@drawable/selector_login_btn"
-        android:elevation="@dimen/corner_dimen"
-        android:text="@string/btn_login"
-        android:textColor="@android:color/white"
-        tools:targetApi="lollipop"/>
+        android:text="@string/btn_login"/>
 
 </LinearLayout>

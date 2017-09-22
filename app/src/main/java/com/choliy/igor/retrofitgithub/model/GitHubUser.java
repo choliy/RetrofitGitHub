@@ -31,17 +31,17 @@ public class GitHubUser implements Parcelable {
     @SerializedName("avatar_url")
     private String mAvatarUrl;
 
-    @SerializedName("public_repos")
-    private int mRepos;
-
-    @SerializedName("public_gists")
-    private int mGists;
-
     @SerializedName("followers")
     private int mFollowers;
 
     @SerializedName("following")
     private int mFollowing;
+
+    @SerializedName("public_gists")
+    private int mGists;
+
+    @SerializedName("public_repos")
+    private int mRepos;
 
     private GitHubUser(Parcel in) {
         mUsername = in.readString();
@@ -52,10 +52,10 @@ public class GitHubUser implements Parcelable {
         mAbout = in.readString();
         mCreated = in.readString();
         mAvatarUrl = in.readString();
-        mRepos = in.readInt();
-        mGists = in.readInt();
         mFollowers = in.readInt();
         mFollowing = in.readInt();
+        mGists = in.readInt();
+        mRepos = in.readInt();
     }
 
     public static final Creator<GitHubUser> CREATOR = new Creator<GitHubUser>() {
@@ -80,10 +80,10 @@ public class GitHubUser implements Parcelable {
         parcel.writeString(mAbout);
         parcel.writeString(mCreated);
         parcel.writeString(mAvatarUrl);
-        parcel.writeInt(mRepos);
-        parcel.writeInt(mGists);
         parcel.writeInt(mFollowers);
         parcel.writeInt(mFollowing);
+        parcel.writeInt(mGists);
+        parcel.writeInt(mRepos);
     }
 
     @Override
@@ -123,19 +123,19 @@ public class GitHubUser implements Parcelable {
         return mAvatarUrl;
     }
 
-    public int getRepos() {
-        return mRepos;
-    }
-
-    public int getGists() {
-        return mGists;
-    }
-
     public int getFollowers() {
         return mFollowers;
     }
 
     public int getFollowing() {
         return mFollowing;
+    }
+
+    public int getGists() {
+        return mGists;
+    }
+
+    public int getRepos() {
+        return mRepos;
     }
 }

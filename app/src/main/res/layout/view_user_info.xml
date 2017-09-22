@@ -37,14 +37,9 @@
         tools:text="Android Developer"/>
 
     <TextView
-        android:id="@+id/tv_repos"
+        android:id="@+id/tv_created"
         style="@style/InfoUserText"
-        tools:text="10"/>
-
-    <TextView
-        android:id="@+id/tv_gists"
-        style="@style/InfoUserText"
-        tools:text="2"/>
+        tools:text="16.10.2015"/>
 
     <TextView
         android:id="@+id/tv_followers"
@@ -57,8 +52,8 @@
         tools:text="5"/>
 
     <TextView
-        android:id="@+id/tv_created"
+        android:id="@+id/tv_gists"
         style="@style/InfoUserText"
-        tools:text="16.10.2015"/>
+        tools:text="2"/>
 
 </LinearLayout>
