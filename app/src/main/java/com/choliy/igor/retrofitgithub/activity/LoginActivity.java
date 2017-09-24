@@ -2,7 +2,10 @@ package com.choliy.igor.retrofitgithub.activity;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.choliy.igor.retrofitgithub.R;
@@ -19,6 +22,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AbstractActivity {
 
+    @BindView(R.id.image_logo) ImageView mLogo;
     @BindView(R.id.edit_text) EditText mUsername;
     @BindView(R.id.progress_login) ProgressBar mProgress;
 
@@ -32,13 +36,15 @@ public class LoginActivity extends AbstractActivity {
         // leave empty for current activity
     }
 
-    @OnClick(R.id.btn_login)
-    public void onClick() {
-        if (!TextUtils.isEmpty(mUsername.getText().toString())) {
-            mProgress.setVisibility(View.VISIBLE);
-            loadUserData();
-        } else {
-            InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
+    @OnClick({R.id.image_logo, R.id.btn_login})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.image_logo:
+                onLogoClick();
+                break;
+            case R.id.btn_login:
+                onLoginClick();
+                break;
         }
     }
 
@@ -64,5 +70,19 @@ public class LoginActivity extends AbstractActivity {
                 InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_check_internet));
             }
         });
+    }
+
+    private void onLogoClick() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
+        mLogo.startAnimation(animation);
+    }
+
+    private void onLoginClick() {
+        if (!TextUtils.isEmpty(mUsername.getText().toString())) {
+            mProgress.setVisibility(View.VISIBLE);
+            loadUserData();
+        } else {
+            InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
+        }
     }
 }

@@ -15,6 +15,7 @@
         android:visibility="invisible"/>
 
     <ImageView
+        android:id="@+id/image_logo"
         android:layout_width="@dimen/image_size"
         android:layout_height="@dimen/image_size"
         android:layout_gravity="center"

@@ -26,6 +26,7 @@ public class RepoActivity extends AbstractActivity {
 
     private static final String KEY_INTENT_USERNAME = "key_intent_username";
     private RepoAdapter mAdapter;
+    private int mPageNumber = 1;
 
     @BindView(R.id.rv_repositories) RecyclerView mRecyclerView;
     @BindView(R.id.progress_repo) ProgressBar mProgress;

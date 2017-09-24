@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="degrees_0">0</integer>
+    <integer name="degrees_360">360</integer>
+    <integer name="one_second">1000</integer>
+</resources>
