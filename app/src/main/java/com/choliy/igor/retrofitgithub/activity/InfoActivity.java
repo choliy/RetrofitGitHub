@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -53,7 +52,7 @@ public class InfoActivity extends AbstractActivity {
     }
 
     @OnClick(R.id.btn_repo)
-    public void onClick(View view) {
+    public void onClick() {
         RepoActivity.newInstance(this, mUser.getUsername());
     }
 

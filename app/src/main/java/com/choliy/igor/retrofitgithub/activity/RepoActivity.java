@@ -50,7 +50,7 @@ public class RepoActivity extends AbstractActivity implements RepoAdapter.OnLast
     }
 
     @Override
-    public void onLastItem(int adapterPosition) {
+    public void onLastItem() {
         if (!mNoModeDataToFetch) {
             mPageNumber = ++mPageNumber;
             showProgress(Boolean.TRUE);
@@ -77,8 +77,7 @@ public class RepoActivity extends AbstractActivity implements RepoAdapter.OnLast
             public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                 showProgress(Boolean.FALSE);
                 if (response.isSuccessful()) {
-                    boolean setRepos = mPageNumber == ApiService.DEFAULT_PAGE_NUMBER;
-                    mAdapter.addData(response.body(), setRepos);
+                    mAdapter.addRepos(response.body());
                     if (response.body().size() < ApiService.REPOS_PER_PAGE) {
                         mNoModeDataToFetch = Boolean.TRUE;
                     }

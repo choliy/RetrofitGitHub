@@ -33,7 +33,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoHolder> {
 
         // Callback on the end of the list
         if (position == getItemCount() - 1) {
-            mCallback.onLastItem(getItemCount());
+            mCallback.onLastItem();
         }
     }
 
@@ -42,16 +42,12 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoHolder> {
         return mRepos.size();
     }
 
-    public void addData(List<GitHubRepo> repos, boolean setRepos) {
-        if (setRepos) {
-            mRepos = repos;
-        } else {
-            mRepos.addAll(repos);
-        }
+    public void addRepos(List<GitHubRepo> repos) {
+        mRepos.addAll(repos);
         notifyDataSetChanged();
     }
 
     public interface OnLastItemCallback {
-        void onLastItem(int adapterPosition);
+        void onLastItem();
     }
 }
