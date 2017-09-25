@@ -48,6 +48,20 @@ public class LoginActivity extends AbstractActivity {
         }
     }
 
+    private void onLogoClick() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
+        mLogo.startAnimation(animation);
+    }
+
+    private void onLoginClick() {
+        if (!TextUtils.isEmpty(mUsername.getText().toString())) {
+            mProgress.setVisibility(View.VISIBLE);
+            loadUserData();
+        } else {
+            InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
+        }
+    }
+
     private void loadUserData() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         Call<GitHubUser> call = apiService.getUser(mUsername.getText().toString());
@@ -70,19 +84,5 @@ public class LoginActivity extends AbstractActivity {
                 InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_check_internet));
             }
         });
-    }
-
-    private void onLogoClick() {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
-        mLogo.startAnimation(animation);
-    }
-
-    private void onLoginClick() {
-        if (!TextUtils.isEmpty(mUsername.getText().toString())) {
-            mProgress.setVisibility(View.VISIBLE);
-            loadUserData();
-        } else {
-            InfoUtils.showInfoToast(LoginActivity.this, getString(R.string.text_enter_username));
-        }
     }
 }

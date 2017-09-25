@@ -30,7 +30,7 @@ public interface ApiService {
      * By GitHub documentation for getting user repositories:
      * "https://api.github.com/users/{user}/repos{?type,page,per_page,sort}"
      * <p>
-     * 100 repos per page is a maximum value by gitHub API
+     * 100 items per page is a maximum value by gitHub API
      * by default it will returns 30 items per request
      *
      * @Query("key") equals "users/{username}/repos?page=2&per_page=50"

@@ -45,18 +45,7 @@ public class RepoActivity extends AbstractActivity implements RepoAdapter.OnLast
 
     @Override
     public void setupUi() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        DividerItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
-        mAdapter = new RepoAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(divider);
-        mRecyclerView.setHasFixedSize(Boolean.TRUE);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        setupAdapter();
         loadRepositories();
     }
 
@@ -67,6 +56,16 @@ public class RepoActivity extends AbstractActivity implements RepoAdapter.OnLast
             showProgress(Boolean.TRUE);
             loadRepositories();
         }
+    }
+
+    private void setupAdapter() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        DividerItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
+        mAdapter = new RepoAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.addItemDecoration(divider);
+        mRecyclerView.setHasFixedSize(Boolean.TRUE);
     }
 
     private void loadRepositories() {

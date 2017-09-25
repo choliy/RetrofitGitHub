@@ -38,7 +38,19 @@ public class WebActivity extends AbstractActivity {
     public void setupUi() {
         String repoName = getIntent().getStringExtra(KEY_INTENT_NAME);
         setTitle(getString(R.string.label_web, repoName));
+        setupWebView();
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private void setupWebView() {
         mWebView.getSettings().setJavaScriptEnabled(Boolean.TRUE);
         mWebView.getSettings().setLoadWithOverviewMode(Boolean.TRUE);
         mWebView.getSettings().setUseWideViewPort(Boolean.TRUE);
@@ -60,14 +72,5 @@ public class WebActivity extends AbstractActivity {
             }
         });
         mWebView.loadUrl(getIntent().getStringExtra(KEY_INTENT_URL));
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mWebView.canGoBack()) {
-            mWebView.goBack();
-        } else {
-            super.onBackPressed();
-        }
     }
 }
