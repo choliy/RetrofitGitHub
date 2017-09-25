@@ -14,6 +14,11 @@ import java.util.List;
 public class RepoAdapter extends RecyclerView.Adapter<RepoHolder> {
 
     private List<GitHubRepo> mRepos = new ArrayList<>();
+    private OnLastItemCallback mCallback;
+
+    public RepoAdapter(OnLastItemCallback callback) {
+        mCallback = callback;
+    }
 
     @Override
     public RepoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,6 +30,11 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoHolder> {
     @Override
     public void onBindViewHolder(RepoHolder holder, int position) {
         holder.bindData(mRepos.get(position));
+
+        // Callback on the end of the list
+        if (position == getItemCount() - 1) {
+            mCallback.onLastItem(getItemCount());
+        }
     }
 
     @Override
@@ -32,8 +42,16 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoHolder> {
         return mRepos.size();
     }
 
-    public void setRepos(List<GitHubRepo> repos) {
-        mRepos = repos;
+    public void addData(List<GitHubRepo> repos, boolean setRepos) {
+        if (setRepos) {
+            mRepos = repos;
+        } else {
+            mRepos.addAll(repos);
+        }
         notifyDataSetChanged();
+    }
+
+    public interface OnLastItemCallback {
+        void onLastItem(int adapterPosition);
     }
 }

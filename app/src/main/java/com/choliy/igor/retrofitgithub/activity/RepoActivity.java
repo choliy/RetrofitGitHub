@@ -22,11 +22,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RepoActivity extends AbstractActivity {
+public class RepoActivity extends AbstractActivity implements RepoAdapter.OnLastItemCallback {
 
     private static final String KEY_INTENT_USERNAME = "key_intent_username";
+    private int mPageNumber = ApiService.DEFAULT_PAGE_NUMBER;
+    private boolean mNoModeDataToFetch;
     private RepoAdapter mAdapter;
-    private int mPageNumber = 1;
 
     @BindView(R.id.rv_repositories) RecyclerView mRecyclerView;
     @BindView(R.id.progress_repo) ProgressBar mProgress;
@@ -46,7 +47,7 @@ public class RepoActivity extends AbstractActivity {
     public void setupUi() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         DividerItemDecoration divider = new DividerItemDecoration(this, layoutManager.getOrientation());
-        mAdapter = new RepoAdapter();
+        mAdapter = new RepoAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(divider);
@@ -59,16 +60,29 @@ public class RepoActivity extends AbstractActivity {
         loadRepositories();
     }
 
+    @Override
+    public void onLastItem(int adapterPosition) {
+        if (!mNoModeDataToFetch) {
+            mPageNumber = ++mPageNumber;
+            showProgress(Boolean.TRUE);
+            loadRepositories();
+        }
+    }
+
     private void loadRepositories() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         String username = getIntent().getStringExtra(KEY_INTENT_USERNAME);
-        Call<List<GitHubRepo>> call = apiService.getRepos(username);
+        Call<List<GitHubRepo>> call = apiService.getRepos(username, mPageNumber, ApiService.REPOS_PER_PAGE);
         call.enqueue(new Callback<List<GitHubRepo>>() {
             @Override
             public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
-                mProgress.setVisibility(View.INVISIBLE);
+                showProgress(Boolean.FALSE);
                 if (response.isSuccessful()) {
-                    mAdapter.setRepos(response.body());
+                    boolean setRepos = mPageNumber == ApiService.DEFAULT_PAGE_NUMBER;
+                    mAdapter.addData(response.body(), setRepos);
+                    if (response.body().size() < ApiService.REPOS_PER_PAGE) {
+                        mNoModeDataToFetch = Boolean.TRUE;
+                    }
                 } else {
                     InfoUtils.showErrorCode(RepoActivity.this, response.code());
                 }
@@ -76,9 +90,17 @@ public class RepoActivity extends AbstractActivity {
 
             @Override
             public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
-                mProgress.setVisibility(View.INVISIBLE);
+                showProgress(Boolean.FALSE);
                 InfoUtils.showInfoToast(RepoActivity.this, getString(R.string.text_check_internet));
             }
         });
+    }
+
+    private void showProgress(boolean show) {
+        if (show) {
+            mProgress.setVisibility(View.VISIBLE);
+        } else {
+            mProgress.setVisibility(View.INVISIBLE);
+        }
     }
 }
